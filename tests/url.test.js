@@ -49,6 +49,15 @@ module.exports = {
       });
     });
   },
+  'url normalization should prevent trailing "?"': function () {
+    var webpage = new Webpage({ url: 'http://google.com/maps'});
+    webpage.save(function (err) {
+      webpage.url.should.equal('http://google.com/maps');
+      Webpage.findById(webpage._id, function (err, refreshed) {
+        refreshed.url.should.equal('http://google.com/maps');
+      });
+    });
+  },
   teardown: function(){
     db.close();
   }
