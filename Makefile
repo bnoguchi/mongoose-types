@@ -1,4 +1,4 @@
-EXPRESSO = support/expresso/bin/expresso -I lib
+EXPRESSO = support/expresso/bin/expresso -I lib --serial
 
 TESTS = tests/*.test.js
 
