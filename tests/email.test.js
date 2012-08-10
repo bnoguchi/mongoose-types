@@ -1,46 +1,54 @@
-require('should');
-var mongoose = require('mongoose')
+var assert = require('assert')
+  , mongoose = require('mongoose')
   , Schema = mongoose.Schema
   , db = mongoose.createConnection('mongodb://localhost/mongoose_types_tests');
 
 require("../").loadTypes(mongoose, 'email');
 
 var UserSchema = new Schema({
-  email: mongoose.SchemaTypes.Email
+  email: mongoose.Schema.Types.Email
 });
 
 mongoose.model('User', UserSchema);
 var User;
 
-module.exports = {
-  before: function(){
-    User = db.model('User', UserSchema);
-    User.remove({}, function (err) {});
-  },
-  'test invalid email validation': function () {
+describe('email', function () {
+
+  it('should test invalid email validation', function (done) {
     var user = new User({email: 'hello'});
     user.save(function (err) {
-      err.message.should.equal('Validator "email is invalid" failed for path email');
-      user.isNew.should.be.true;
+      assert.equal(err.message, 'Validation failed')
+      assert(user.isNew);
+      done();
     });
-  },
-  'test valid email validation': function () {
+  });
+  
+  it('should test valid email validation', function (done) {
     var user = new User({ email: 'brian@brian.com' });
     user.save(function (err) {
-      err.should.eql(null);
-      user.isNew.should.be.false;
+      assert.equal(err, null);
+      assert.equal(user.isNew, false);
+      done();
     });
-  },
-  'email should be converted to lowercase': function () {
+  });
+  
+  it('should convert email to lowercase', function (done) {
     var user = new User({ email: 'mIxEdCaSe@lowercase.com'});
     user.save(function (err) {
-      user.email.should.equal('mixedcase@lowercase.com');
+      assert.equal(user.email, 'mixedcase@lowercase.com');
       User.findById(user._id, function (err, refreshed) {
-        refreshed.email.should.equal('mixedcase@lowercase.com');
+        assert.equal(refreshed.email, 'mixedcase@lowercase.com')
+        done();
       });
     });
-  },
-  teardown: function(){
+  });
+
+  before(function () {
+    User = db.model('User', UserSchema);
+    User.remove({}, function (err) {}); 
+  });
+
+  after(function () {
     db.close();
-  }
-};
+  });
+});

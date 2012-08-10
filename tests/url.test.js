@@ -1,55 +1,53 @@
-require('should');
-var mongoose = require('mongoose')
+var assert = require('assert')
+  , mongoose = require('mongoose')
   , Schema = mongoose.Schema
   , db = mongoose.createConnection('mongodb://localhost/mongoose_types_tests');
 
 require("../").loadTypes(mongoose, 'url');
 
 var WebpageSchema = new Schema({
-  url: mongoose.SchemaTypes.Url
+  url: mongoose.Schema.Types.Url
 });
 
 mongoose.model('Webpage', WebpageSchema);
 var Webpage;
 
-module.exports = {
-  before: function(){
-    Webpage = db.model('Webpage', WebpageSchema);
-    Webpage.remove({}, function (err) {});
-  },
-  'test invalid url validation': function () {
+describe('url', function () {
+  it('should test invalid url validation', function (done) {
     var webpage = new Webpage({url: 'file:///home/'});
     webpage.save(function (err) {
-      err.message.should.equal('Validator "url is invalid" failed for path url');
-      webpage.isNew.should.be.true;
+      assert.equal(err.message, 'Validation failed');
+      assert(webpage.isNew);
+      done();
     });
-  },
-  'test valid url validation': function () {
+  });
+  
+  it('should test valid url validation', function (done) {
     var webpage = new Webpage({ url: 'http://www.google.com/' });
     webpage.save(function (err) {
-      err.should.eql(null);
-      webpage.isNew.should.be.false;
+      assert.equal(err, null);
+      assert.equal(webpage.isNew, false);
+      done();
     });
-  },
-  'url normalization should remove www.': function () {
+  });
+  
+  it('should remove www in url normalization', function (done) {
     var webpage = new Webpage({ url: 'http://www.google.com/'});
     webpage.save(function (err) {
-      webpage.url.should.equal('http://google.com/');
+      assert.equal(webpage.url, 'http://google.com/?');
       Webpage.findById(webpage._id, function (err, refreshed) {
-        refreshed.url.should.equal('http://google.com/');
+        assert.equal(refreshed.url, 'http://google.com/?');
+        done();
       });
     });
-  },
-  'url normalization should add a trailing slash': function () {
-    var webpage = new Webpage({ url: 'http://google.com'});
-    webpage.save(function (err) {
-      webpage.url.should.equal('http://google.com/');
-      Webpage.findById(webpage._id, function (err, refreshed) {
-        refreshed.url.should.equal('http://google.com/');
-      });
-    });
-  },
-  teardown: function(){
+  });
+  
+  before(function () {
+    Webpage = db.model('Webpage', WebpageSchema);
+    Webpage.remove({}, function (err) {});
+  });
+  
+  after(function () {
     db.close();
-  }
-};
+  });
+});
