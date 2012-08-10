@@ -1,6 +1,6 @@
 { "name": "mongoose-3x-types"
 , "description":  "More types for mongoose"
-, "version":  "1.0.3"
+, "version":  "1.0.4"
 , "author": "Brian Noguchi"
 , "contributors": [
 	{   "name": "Marco Pantaleoni"
