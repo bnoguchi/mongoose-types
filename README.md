@@ -1,5 +1,7 @@
-mongoose-types - Useful types and type plugins for Mongoose
-==============
+mongoose-3x-types - Useful types and type plugins for Mongoose
+=================
+
+This library is a fork of [mongoose-types](http://github.com/bnoguchi/mongoose-types), updated to work both with [mongoose](http://mongoosejs.com) 2.x and 3.x
 
 ### Types include:
 
@@ -12,7 +14,7 @@ mongoose-types - Useful types and type plugins for Mongoose
   Adds `createdAt` and `updatedAt` date attributes that get auto-assigned to the most recent create/update timestamp.
 
 ### Installation
-    npm install mongoose-types
+    npm install mongoose-3x-types
 
 ### Setup
 
@@ -20,14 +22,14 @@ To include all of the defined types:
 
     var mongoose = require("mongoose");
     var db = mongoose.createConnection("mongodb://localhost/sampledb");
-    var mongooseTypes = require("mongoose-types");
+    var mongooseTypes = require("mongoose-3x-types");
     mongooseTypes.loadTypes(mongoose);
 
 You can also specify that you only want to load and use a limited subset of the types provided:
 
     var mongoose = require("mongoose");
     var db = mongoose.createConnection("mongodb://localhost/sampledb");
-    var mongooseTypes = require("mongoose-types");
+    var mongooseTypes = require("mongoose-3x-types");
     // Only load the email type
     mongooseTypes.loadTypes(mongoose, "email");
 
@@ -65,7 +67,7 @@ Keep this in mind when reading the following examples.
 
     var mongoose = require("mongoose");
     var db = mongoose.createConnection("mongodb://localhost/sampledb");
-    var mongooseTypes = require("mongoose-types")
+    var mongooseTypes = require("mongoose-3x-types")
       , useTimestamps = mongooseTypes.useTimestamps;
     var UserSchema = new Schema({
         username: String
