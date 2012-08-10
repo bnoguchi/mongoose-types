@@ -1,12 +1,13 @@
-require('should');
+var should = require('should');
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema
+  , SchemaTypes = mongoose.SchemaTypes || mongoose.Schema.Types
   , db = mongoose.createConnection('mongodb://localhost/mongoose_types_tests');
 
 require("../").loadTypes(mongoose, 'url');
 
 var WebpageSchema = new Schema({
-  url: mongoose.SchemaTypes.Url
+  url: SchemaTypes.Url
 });
 
 mongoose.model('Webpage', WebpageSchema);
@@ -20,14 +21,15 @@ module.exports = {
   'test invalid url validation': function () {
     var webpage = new Webpage({url: 'file:///home/'});
     webpage.save(function (err) {
-      err.message.should.equal('Validator "url is invalid" failed for path url');
+      var message = err.errors.url.message || err.message;
+      message.should.equal('Validator "url is invalid" failed for path url');
       webpage.isNew.should.be.true;
     });
   },
   'test valid url validation': function () {
     var webpage = new Webpage({ url: 'http://www.google.com/' });
     webpage.save(function (err) {
-      err.should.eql(null);
+      should.not.exist(err);
       webpage.isNew.should.be.false;
     });
   },
