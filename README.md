@@ -35,9 +35,15 @@ You can also specify that you only want to load and use a limited subset of the 
 
 Once you are setup, you can begin to use the new types.
 
+#### Mongoose 2.x and 3.x
+
+When on mongoose 3.x use `mongoose.Schema.Types`, otherwise if you're on mongoose 2.x use `mongoose.SchemaTypes`.
+
+Keep this in mind when reading the following examples.
+
 #### Email
 
-    var Email = mongoose.SchemaTypes.Email;
+    var Email = mongoose.Schema.Types.Email;
     var UserSchema = new Schema({
       email: {
           work: Email
@@ -47,7 +53,7 @@ Once you are setup, you can begin to use the new types.
 
 #### Url
 
-    var Url = mongoose.SchemaTypes.Url;
+    var Url = mongoose.Schema.Types.Url;
     var VisitSchema = new Schema({
         url: Url
       , referer: Url
@@ -92,6 +98,7 @@ To run tests:
 ### Contributors
 
 - [Brian Noguchi](https://github.com/bnoguchi)
+- [Marco Pantaleoni](https://github.com/panta)
 
 ### License
 
