@@ -2,6 +2,8 @@ mongoose-3x-types - Useful types and type plugins for Mongoose
 =================
 
 This library is a fork of [mongoose-types](http://github.com/bnoguchi/mongoose-types), updated to work both with [mongoose](http://mongoosejs.com) 2.x and 3.x
+It is meant to be used as an interim solution while waiting for the upstream version to be updated.
+
 
 ### Types include:
 
