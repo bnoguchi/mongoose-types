@@ -1,4 +1,5 @@
-EXPRESSO = support/expresso/bin/expresso -I lib
+#EXPRESSO = support/expresso/bin/expresso -I lib
+EXPRESSO = node_modules/.bin/expresso -I lib
 
 TESTS = tests/*.test.js
 

@@ -1,12 +1,13 @@
-require('should');
+var should = require('should');
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema
+  , SchemaTypes = mongoose.SchemaTypes || mongoose.Schema.Types
   , db = mongoose.createConnection('mongodb://localhost/mongoose_types_tests');
 
 require("../").loadTypes(mongoose, 'email');
 
 var UserSchema = new Schema({
-  email: mongoose.SchemaTypes.Email
+  email: SchemaTypes.Email
 });
 
 mongoose.model('User', UserSchema);
@@ -20,14 +21,15 @@ module.exports = {
   'test invalid email validation': function () {
     var user = new User({email: 'hello'});
     user.save(function (err) {
-      err.message.should.equal('Validator "email is invalid" failed for path email');
+      var message = err.errors.email.message || err.message;
+      message.should.equal('Validator "email is invalid" failed for path email');
       user.isNew.should.be.true;
     });
   },
   'test valid email validation': function () {
     var user = new User({ email: 'brian@brian.com' });
     user.save(function (err) {
-      err.should.eql(null);
+      should.not.exist(err);
       user.isNew.should.be.false;
     });
   },

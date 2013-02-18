@@ -1,5 +1,10 @@
-mongoose-types - Useful types and type plugins for Mongoose
-==============
+mongoose-3x-types - Useful types and type plugins for Mongoose
+=================
+
+This library is a fork of [mongoose-types](http://github.com/bnoguchi/mongoose-types), updated to work both with [mongoose](http://mongoosejs.com) 2.x and 3.x.
+
+It is meant to be used as an interim solution while waiting for the upstream version to be updated.
+
 
 ### Types include:
 
@@ -12,7 +17,7 @@ mongoose-types - Useful types and type plugins for Mongoose
   Adds `createdAt` and `updatedAt` date attributes that get auto-assigned to the most recent create/update timestamp.
 
 ### Installation
-    npm install mongoose-types
+    npm install mongoose-3x-types
 
 ### Setup
 
@@ -20,14 +25,14 @@ To include all of the defined types:
 
     var mongoose = require("mongoose");
     var db = mongoose.createConnection("mongodb://localhost/sampledb");
-    var mongooseTypes = require("mongoose-types");
+    var mongooseTypes = require("mongoose-3x-types");
     mongooseTypes.loadTypes(mongoose);
 
 You can also specify that you only want to load and use a limited subset of the types provided:
 
     var mongoose = require("mongoose");
     var db = mongoose.createConnection("mongodb://localhost/sampledb");
-    var mongooseTypes = require("mongoose-types");
+    var mongooseTypes = require("mongoose-3x-types");
     // Only load the email type
     mongooseTypes.loadTypes(mongoose, "email");
 
@@ -35,9 +40,15 @@ You can also specify that you only want to load and use a limited subset of the 
 
 Once you are setup, you can begin to use the new types.
 
+#### Mongoose 2.x and 3.x
+
+When on mongoose 3.x use `mongoose.Schema.Types`, otherwise if you're on mongoose 2.x use `mongoose.SchemaTypes`.
+
+Keep this in mind when reading the following examples.
+
 #### Email
 
-    var Email = mongoose.SchemaTypes.Email;
+    var Email = mongoose.Schema.Types.Email;
     var UserSchema = new Schema({
       email: {
           work: Email
@@ -47,7 +58,7 @@ Once you are setup, you can begin to use the new types.
 
 #### Url
 
-    var Url = mongoose.SchemaTypes.Url;
+    var Url = mongoose.Schema.Types.Url;
     var VisitSchema = new Schema({
         url: Url
       , referer: Url
@@ -59,7 +70,7 @@ Once you are setup, you can begin to use the new types.
 
     var mongoose = require("mongoose");
     var db = mongoose.createConnection("mongodb://localhost/sampledb");
-    var mongooseTypes = require("mongoose-types")
+    var mongooseTypes = require("mongoose-3x-types")
       , useTimestamps = mongooseTypes.useTimestamps;
     var UserSchema = new Schema({
         username: String
@@ -92,6 +103,7 @@ To run tests:
 ### Contributors
 
 - [Brian Noguchi](https://github.com/bnoguchi)
+- [Marco Pantaleoni](https://github.com/panta)
 
 ### License
 
