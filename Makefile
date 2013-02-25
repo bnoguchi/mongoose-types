@@ -1,11 +1,17 @@
 EXPRESSO = support/expresso/bin/expresso -I lib
 
-TESTS = tests/*.test.js
+MONGODB_URL = 'mongodb://localhost:27017/test?safe=true'
+REPORTER = list
 
 test:
-	@$(EXPRESSO) $(TESTS) $(TEST_FLAGS)
+	@NODE_ENV=test \
+	MONGODB_URL=$(MONGODB_URL) \
+	./node_modules/.bin/mocha \
+		--recursive \
+		--reporter $(REPORTER) \
+		--timeout 10000 \
+		--bail \
+		tests/*.test.coffee \
+		--require coffee-script
 
-test-cov:
-	@$(MAKE) TEST_FLAGS=--cov test
-
-.PHONY: test test-cov
+.PHONY: test

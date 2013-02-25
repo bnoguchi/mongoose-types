@@ -1,11 +1,42 @@
-{ "name": "mongoose-types"
-, "description":  "More types for mongoose"
-, "version":  "1.0.3"
-, "author": "Brian Noguchi"
-, "dependencies": { "mongoose": ">= 1.0.16"}
-, "keywords": [ "mongoose", "mongo", "mongodb", "types" ]
-, "scripts": { "test": "make test" }
-, "engines": { "node": ">= 0.1.101" }
-, "main": "./index"
-, "licenses": [ { "type": "The MIT License", "url": "http://www.opensource.org/licenses/mit-license.php" } ]
+{
+  "name": "openifyit-mongoose-types",
+  "description": "More types for mongoose",
+  "version": "2.0.0",
+  "author": {
+    "name": "Brian Noguchi"
+  },
+  "maintainers":[
+    { 
+      "name": "Openify.it",
+      "url": "https://github.com/OpenifyIt"
+    }
+  ],
+  "dependencies": {
+    "mongoose": "3.2.x",
+    "coffee-script": "1.4.x"
+  },
+  "devDependencies": {
+    "mocha": "1.6.x",
+    "expect.js": "0.1.x"
+  },
+  "keywords": [
+    "mongoose",
+    "mongo",
+    "mongodb",
+    "types"
+  ],
+  "scripts": {
+    "test": "make test"
+  },
+  "main": "./main",
+  "licenses": [
+    {
+      "type": "The MIT License",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/OpenifyIt/mongoose-fixtures.git"
+  }
 }
