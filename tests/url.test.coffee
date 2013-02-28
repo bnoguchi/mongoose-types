@@ -36,6 +36,7 @@ describe 'test Url type', () ->
         WebpageModel = mongoose.model 'Webpage'
         webpage = new WebpageModel document
         webpage.save (err) =>
+            console.log err
             expect(err).not.to.be.ok()
             WebpageModel.findById webpage._id, (err, result) =>
                 expect(err).not.to.be.ok()
