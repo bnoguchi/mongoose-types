@@ -9,5 +9,3 @@ exports.loadTypes = () ->
         files.forEach (filename) ->
             base = filename.slice 0, filename.length-3
             require("./types/" + base).loadType(mongoose)
-
-exports.useTimestamps = require("./plugins/useTimestamps").useTimestamps
