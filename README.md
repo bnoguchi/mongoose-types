@@ -1,6 +1,8 @@
 mongoose-types - Useful types for Mongoose
 ==============
 
+[![Build Status](https://travis-ci.org/OpenifyIt/mongoose-types.png?branch=master)](https://travis-ci.org/OpenifyIt/mongoose-types)
+
 ### Types include:
 
 - Email
