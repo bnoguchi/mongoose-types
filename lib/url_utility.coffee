@@ -3,16 +3,14 @@ url = require 'url'
 class UrlUtility
     validate: (required, url) =>
         if required or url
-            urlRegexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+            urlRegexp = /^[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/i
             return urlRegexp.test url
         else
             return true
 
     normalize: (uri) =>
         parsedUrl = url.parse uri, true
-        
-        urlstr = ''
-        urlstr += if parsedUrl.protocol then parsedUrl.protocol.toLowerCase() else ''
+        urlstr = if parsedUrl.protocol then parsedUrl.protocol.toLowerCase() else 'http:'
         urlstr += '//'
         urlstr += if parsedUrl.hostname then parsedUrl.hostname.toLowerCase().replace(/^www\./, '') else ''
         urlstr += if parsedUrl.pathname then parsedUrl.pathname.replace(/\/\.{1,2}\//g, '/').replace(/\/{2,}/, '/')

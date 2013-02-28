@@ -16,9 +16,10 @@ WebpageSchema = new Schema schema
 
 describe 'test Url type', () ->
     before (done) ->
-        @validUrl = "http://www.openify.it"
-        @invalidUrl = "www.openify.it"
-        @urlWithQueryString = "http://google.ca/?q=openify"
+        @validUrl = 'http://www.openify.it'
+        @validUrlWithoutProtocol = 'www.openify.it'
+        @invalidUrl = 'www.openify'
+        @urlWithQueryString = 'http://google.ca/?q=openify'
         mongoose.connect process.env.MONGODB_URL
         mongoose.connection.on 'error', (err) =>
             done err
@@ -93,4 +94,17 @@ describe 'test Url type', () ->
                 expect(err).not.to.be.ok()
                 expect(result).to.be.ok()
                 expect(result.requiredUrl).to.be.eql(@urlWithQueryString)
+                done()
+
+    it 'should save a valid url without protocol and add the default one (http://)', (done) ->
+        document = 
+            requiredUrl: @validUrlWithoutProtocol
+        WebpageModel = mongoose.model 'Webpage'
+        webpage = new WebpageModel document
+        webpage.save (err) =>
+            expect(err).not.to.be.ok()
+            WebpageModel.findById webpage._id, (err, result) =>
+                expect(err).not.to.be.ok()
+                expect(result).to.be.ok()
+                expect(result.requiredUrl).to.be.eql('http://openify.it/')
                 done()
