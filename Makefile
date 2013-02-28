@@ -1,5 +1,3 @@
-EXPRESSO = support/expresso/bin/expresso -I lib
-
 MONGODB_URL = 'mongodb://localhost:27017/test?safe=true'
 REPORTER = list
 

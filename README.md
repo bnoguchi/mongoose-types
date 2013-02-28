@@ -1,15 +1,10 @@
-mongoose-types - Useful types and type plugins for Mongoose
+mongoose-types - Useful types for Mongoose
 ==============
 
 ### Types include:
 
 - Email
 - Url
-
-### Plugins include:
-
-- useTimestamps
-  Adds `createdAt` and `updatedAt` date attributes that get auto-assigned to the most recent create/update timestamp.
 
 ### Installation
     npm install mongoose-types
@@ -53,45 +48,16 @@ Once you are setup, you can begin to use the new types.
       , referer: Url
     });
 
-### Using the plugins
-
-#### The `useTimestamps` plugin
-
-    var mongoose = require("mongoose");
-    var db = mongoose.createConnection("mongodb://localhost/sampledb");
-    var mongooseTypes = require("mongoose-types")
-      , useTimestamps = mongooseTypes.useTimestamps;
-    var UserSchema = new Schema({
-        username: String
-    });
-    UserSchema.plugin(useTimestamps);
-    mongoose.model('User', UserSchema);
-    var User = db.model('User', UserSchema);
-    
-    var user = new User({username: 'Prince'});
-    user.save(function (err) {
-      console.log(user.createdAt); // Should be approximately now
-      console.log(user.createdAt === user.updatedAt); // true
-
-      // Wait 1 second and then update the user
-      setTimeout( function () {
-        user.username = 'Symbol';
-        user.save( function (err) {
-          console.log(user.updatedAt); // Should be approximately createdAt + 1 second
-          console.log(user.createdAt < user.updatedAt); // true
-        });
-      }, 1000);
-    });
-
 ## Tests
 
-To run tests:
+To run tests (you must have a running instance of mongodb):
 
     make test
 
 ### Contributors
 
 - [Brian Noguchi](https://github.com/bnoguchi)
+- [Openify.it](https://github.com/Openify.it)
 
 ### License
 
@@ -101,3 +67,7 @@ MIT License
 ### Author
 
 Brian Noguchi
+
+### Rewritten by
+
+Openify.it
