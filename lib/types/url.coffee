@@ -5,7 +5,7 @@ class Url extends mongoose.SchemaTypes.String
     constructor: (path, options) ->
         super path, options
         @urlUtility = new UrlUtility()
-        @validate @urlUtility.validate.bind(@urlUtility, options.required), 'url is invalid'
+        @validate @urlUtility.validate.bind(@urlUtility, options.require), 'url is invalid'
 
     cast: (val) =>
         if val and val isnt ''

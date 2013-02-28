@@ -27,7 +27,7 @@ describe 'test Url type', () ->
             done()
 
     after (done) ->
-        done()
+        mongoose.connection.close done
 
     it 'should create a Webpage with 2 valid urls', (done) ->
         document = 
@@ -36,7 +36,6 @@ describe 'test Url type', () ->
         WebpageModel = mongoose.model 'Webpage'
         webpage = new WebpageModel document
         webpage.save (err) =>
-            console.log err
             expect(err).not.to.be.ok()
             WebpageModel.findById webpage._id, (err, result) =>
                 expect(err).not.to.be.ok()
@@ -53,6 +52,7 @@ describe 'test Url type', () ->
         webpage.save (err) ->
             expect(err).not.to.be.ok()
             done()
+    
     it 'should create a Webpage with an undefined optionalUrl', (done) ->
         document = 
             requiredUrl: @validUrl
