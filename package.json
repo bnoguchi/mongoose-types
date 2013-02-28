@@ -1,7 +1,7 @@
 {
   "name": "openifyit-mongoose-types",
   "description": "More types for mongoose",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "author": {
     "name": "Brian Noguchi"
   },
@@ -37,6 +37,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/OpenifyIt/mongoose-fixtures.git"
+    "url": "git://github.com/OpenifyIt/mongoose-types.git"
   }
 }
