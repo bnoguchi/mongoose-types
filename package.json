@@ -31,8 +31,8 @@
   "main": "./main",
   "licenses": [
     {
-      "type": "The MIT License",
-      "url": "http://www.opensource.org/licenses/mit-license.php"
+      "type": "MIT",
+      "url": "http://github.com/OpenifyIt/mongoose-types/raw/master/LICENSE"
     }
   ],
   "repository": {
