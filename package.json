@@ -1,7 +1,7 @@
 {
   "name": "openifyit-mongoose-types",
   "description": "More types for mongoose",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "author": {
     "name": "Brian Noguchi"
   },
