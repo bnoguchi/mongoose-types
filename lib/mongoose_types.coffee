@@ -7,5 +7,4 @@ exports.loadTypes = () ->
     else
         files = require("fs").readdirSync("#{__dirname}/types")
         files.forEach (filename) ->
-            base = filename.slice 0, filename.length-3
-            require("./types/" + base).loadType(mongoose)
+            require("./types/" + filename).loadType(mongoose)
