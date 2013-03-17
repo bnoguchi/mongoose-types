@@ -1,7 +1,7 @@
 {
   "name": "openifyit-mongoose-types",
   "description": "More types for mongoose",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "author": {
     "name": "Brian Noguchi"
   },
@@ -12,7 +12,7 @@
     }
   ],
   "dependencies": {
-    "mongoose": "3.2.x",
+    "mongoose": "3.5.x",
     "coffee-script": "1.4.x"
   },
   "devDependencies": {
@@ -23,7 +23,10 @@
     "mongoose",
     "mongo",
     "mongodb",
-    "types"
+    "types",
+    "url",
+    "email",
+    "Schema"
   ],
   "scripts": {
     "test": "make test"
