@@ -11,14 +11,16 @@
       "url": "https://github.com/OpenifyIt"
     }
   ],
-  "dependencies": {
-    "mongoose": "3.5.x",
-    "coffee-script": "1.4.x"
-  },
-  "devDependencies": {
-    "mocha": "1.6.x",
-    "expect.js": "0.1.x"
-  },
+  "contributors":[
+    {
+      "name": "Brian Noguchi",
+      "url": "https://github.com/bnoguchi"
+    },
+    {
+      "name": "Jacques-Olivier D. Bernier",
+      "url": "https://github.com/jackdbernier"
+    }
+  ],
   "keywords": [
     "mongoose",
     "mongo",
@@ -28,6 +30,14 @@
     "email",
     "Schema"
   ],
+  "dependencies": {
+    "mongoose": "3.5.x",
+    "coffee-script": "1.4.x"
+  },
+  "devDependencies": {
+    "mocha": "1.6.x",
+    "expect.js": "0.1.x"
+  },
   "scripts": {
     "test": "make test"
   },
