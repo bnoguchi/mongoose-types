@@ -2,6 +2,10 @@
 , "description":  "More types for mongoose"
 , "version":  "1.0.3"
 , "author": "Brian Noguchi"
+, "repository": {
+      "type": "git"
+    , "url": "git://github.com/bnoguchi/mongoose-types.git"
+  }
 , "dependencies": { "mongoose": ">= 1.0.16"}
 , "keywords": [ "mongoose", "mongo", "mongodb", "types" ]
 , "scripts": { "test": "make test" }
