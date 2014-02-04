@@ -1,4 +1,4 @@
-require('should');
+var should = require('should');
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema
   , db = mongoose.createConnection('mongodb://localhost/mongoose_types_tests');
@@ -20,14 +20,14 @@ module.exports = {
   'test invalid url validation': function () {
     var webpage = new Webpage({url: 'file:///home/'});
     webpage.save(function (err) {
-      err.message.should.equal('Validator "url is invalid" failed for path url');
+      err.errors.url.message.should.equal('Validator "url is invalid" failed for path url');
       webpage.isNew.should.be.true;
     });
   },
   'test valid url validation': function () {
     var webpage = new Webpage({ url: 'http://www.google.com/' });
     webpage.save(function (err) {
-      err.should.eql(null);
+      should.not.exist(err);
       webpage.isNew.should.be.false;
     });
   },
@@ -46,6 +46,15 @@ module.exports = {
       webpage.url.should.equal('http://google.com/');
       Webpage.findById(webpage._id, function (err, refreshed) {
         refreshed.url.should.equal('http://google.com/');
+      });
+    });
+  },
+  'url normalization should prevent trailing "?"': function () {
+    var webpage = new Webpage({ url: 'http://google.com/maps'});
+    webpage.save(function (err) {
+      webpage.url.should.equal('http://google.com/maps');
+      Webpage.findById(webpage._id, function (err, refreshed) {
+        refreshed.url.should.equal('http://google.com/maps');
       });
     });
   },
