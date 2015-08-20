@@ -5,6 +5,7 @@ mongoose-types - Useful types and type plugins for Mongoose
 
 - Email
 - Url
+- IPv4 Addresses
 
 ### Plugins include:
 
@@ -51,6 +52,14 @@ Once you are setup, you can begin to use the new types.
     var VisitSchema = new Schema({
         url: Url
       , referer: Url
+    });
+
+#### IPv4 Addresses
+
+    var IPv4 = mongoose.SchemaTypes.Url;
+    var ConnectionSchema = new Schema({
+	sender : IPv4
+      , recipient : IPv4
     });
 
 ### Using the plugins
