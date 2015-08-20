@@ -56,7 +56,7 @@ Once you are setup, you can begin to use the new types.
 
 #### IPv4 Addresses
 
-    var IPv4 = mongoose.SchemaTypes.Url;
+    var IPv4 = mongoose.SchemaTypes.IPv4;
     var ConnectionSchema = new Schema({
 	sender : IPv4
       , recipient : IPv4
