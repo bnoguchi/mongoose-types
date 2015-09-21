@@ -1,5 +1,12 @@
 var mongoose = require('mongoose');
 var mongoosetypes = require('mongoose-types');
+/**
+  usageExample.js
+  Gives a practical example for the usage of the added
+  types, by demonstrating a simple database storage Schema
+  for a Error Report storage application.
+**/
+
 
 exports.init = function(db){
 
@@ -8,7 +15,6 @@ exports.init = function(db){
   mongoosetypes.loadTypes(mongoose);
 
   exports.errorReport = db.model('ErrorReport', new mongoose.Schema({
-
     username : String,
     associatedApplication : String,
     comments : String,
