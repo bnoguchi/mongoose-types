@@ -1,9 +1,5 @@
-EXPRESSO = support/expresso/bin/expresso -I lib
-
-TESTS = tests/*.test.js
-
 test:
-	@$(EXPRESSO) $(TESTS) $(TEST_FLAGS)
+	mocha
 
 test-cov:
 	@$(MAKE) TEST_FLAGS=--cov test
